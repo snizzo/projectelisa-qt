@@ -21,11 +21,12 @@ Rectangle {
         property string fetchUrl;
         property double latitude;
         property double longitude;
+        property double f: 0.00004;
 
         onPositionChanged: {
-            fetchUrl = "http://projectelisa.altervista.org/main/get/?x="+geosrc.position.coordinate.latitude
+            fetchUrl = "http://projectelisa.host56.com/main/get/?x="+geosrc.position.coordinate.latitude
                     +"&y="+geosrc.position.coordinate.longitude
-                    +"&z=0&f=0.00001";
+                    +"&z=0&f="+geosrc.f;
 
             latitude = geosrc.position.coordinate.latitude;
             longitude = geosrc.position.coordinate.longitude;
