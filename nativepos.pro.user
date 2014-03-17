@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 3.0.82, 2014-03-16T19:04:48. -->
+<!-- Written by QtCreator 3.0.82, 2014-03-17T17:21:12. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -388,7 +388,7 @@
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.1">
       <value type="QString" key="BuildTargetSdk">android-19</value>
       <value type="QString" key="KeystoreLocation"></value>
-      <value type="QString" key="ProFilePathForInputFile">/home/luca/Scrivania/nativepos/nativepos.pro</value>
+      <value type="QString" key="ProFilePathForInputFile">/home/luca/Scrivania/projectelisa-qt/nativepos.pro</value>
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Deploy to Android device</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
@@ -445,8 +445,8 @@
      <value type="int">14</value>
     </valuelist>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run on Android device</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.AndroidRunConfiguration:/home/luca/Scrivania/nativepos/nativepos.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Run on Android device2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.AndroidRunConfiguration:/home/luca/Scrivania/projectelisa-qt/nativepos.pro</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">nativepos.pro</value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">true</value>
