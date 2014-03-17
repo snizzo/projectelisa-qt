@@ -1,4 +1,4 @@
-QT += positioning xmlpatterns xml
+QT += positioning xmlpatterns xml androidextras
 # Add more folders to ship with the application, here
 folder_01.source = qml/nativepos
 folder_01.target = qml
@@ -20,7 +20,6 @@ qtcAddDeployment()
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 
 OTHER_FILES += \
-    android/AndroidManifest.xml \
-    ../Refresh-icon.png
+    android/AndroidManifest.xml
 
 ANDROID_EXTRA_LIBS = 

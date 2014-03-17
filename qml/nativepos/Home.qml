@@ -6,46 +6,6 @@ import QtQuick.Controls.Styles 1.1
 Item{
     id: homepage
 
-    Slider {
-        id: slider
-        maximumValue: 0.0015
-        minimumValue: 0.00001
-        stepSize: 0.00001
-        anchors.left: parent.left
-        anchors.right: refreshButton.left
-        anchors.leftMargin: 10
-        anchors.rightMargin: 12
-        updateValueWhileDragging: false
-        y: 10
-        z: 1
-        onValueChanged: {
-            messageModel.reload();
-        }
-    }
-
-    Binding {
-        target: geosrc
-        property: 'f'
-        value: slider.value
-    }
-
-    Image{
-        id: refreshButton
-        source: "images/Refresh-icon.png";
-        anchors.top: parent.top
-        anchors.right: parent.right
-        anchors.rightMargin: 4
-        height: 71
-        width: 71
-        z: 1
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                messageModel.reload();
-            }
-        }
-    }
-
     XmlListModel {
         id: messageModel
         query: "/rss/messages/message"
@@ -56,6 +16,7 @@ Item{
         XmlRole { name: "z"; query: "z/string()" }
         XmlRole { name: "body"; query: "body/string()" }
         XmlRole { name: "owner"; query: "owner/string()" }
+
     }
 
     Binding {
@@ -65,7 +26,7 @@ Item{
     }
 
     ListView{
-        anchors.top: refreshButton.bottom
+        anchors.top: parent.top
         anchors.topMargin: 5
         anchors.left: parent.left
         anchors.leftMargin: 5
@@ -78,35 +39,6 @@ Item{
         spacing: 20
 
         delegate: MessageDelegate{ }
-
-        BusyIndicator {
-            id:viewIndicator
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            visible: true
-            width: 100
-            height: 100
-            states: [
-                State {
-                    name: "loading"
-                    when: messageModel.status == XmlListModel.Loading
-
-                    PropertyChanges {
-                        target: viewIndicator
-                        visible: true
-                    }
-                },
-                State {
-                    name: "hidden"
-                    when: messageModel.status == XmlListModel.Ready
-
-                    PropertyChanges {
-                        target: viewIndicator
-                        visible: false
-                    }
-                }
-            ]
-        }
     }
 
     Rectangle{
@@ -175,7 +107,7 @@ Item{
             var http = new XMLHttpRequest();
             var latitude = geosrc.latitude;
             var longitude = geosrc.longitude;
-            var url = "http://projectelisa.host56.com/main/post/?x="+latitude+"&y="+longitude+"&z=0&owner=000000"
+            var url = "http://projectelisa.altervista.org/main/post/?x="+latitude+"&y="+longitude+"&z=0&owner=000000"
             var params = "body="+body;
             http.open("POST", url, true);
 
