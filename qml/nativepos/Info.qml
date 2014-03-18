@@ -35,7 +35,7 @@ Item{
             text: "Account"
         }
 
-        Button{
+        EButton{
             anchors.left: parent.left
             anchors.leftMargin: 10
             anchors.right: parent.right
@@ -43,14 +43,7 @@ Item{
 
             text: "Sign up"
 
-
-            style: ButtonStyle {
-                background: Rectangle {
-                    border.width: 0
-                    radius: 5
-                    color: control.pressed ? "#ccc" : "#eee"
-                }
-            }
+            height: 50
 
             onClicked: {
                 Qt.openUrlExternally("https://www.facebook.com/dialog/oauth?client_id="+fb.app_id+"&redirect_uri=http://projectelisa.altervista.org/main/fb/");
