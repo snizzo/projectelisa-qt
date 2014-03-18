@@ -14,7 +14,7 @@ Column {
         anchors.rightMargin: 5
         z:1
         text: body
-
+        /*
         Rectangle{
             //dinamically growing background
             y: (singleMessageBody.y -5)
@@ -26,11 +26,12 @@ Column {
             opacity: 1;
             z:-1
         }
+        */
     }
 
     Text {
         Rectangle{
-            color: "#d3f4f5"
+            color: "#9c9c9c"
             anchors.fill: parent
             anchors.topMargin: -3
             anchors.leftMargin: -3

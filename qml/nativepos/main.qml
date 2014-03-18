@@ -15,7 +15,7 @@ Rectangle {
 
     PositionSource {
         id: geosrc
-        updateInterval: 5000
+        updateInterval: 1000
         active: true
 
         property string fetchUrl;
@@ -24,7 +24,7 @@ Rectangle {
         property double f: 0.00004;
 
         onPositionChanged: {
-            fetchUrl = "http://projectelisa.host56.com/main/get/?x="+geosrc.position.coordinate.latitude
+            fetchUrl = "http://projectelisa.altervista.com/main/get/?x="+geosrc.position.coordinate.latitude
                     +"&y="+geosrc.position.coordinate.longitude
                     +"&z=0&f="+geosrc.f;
 

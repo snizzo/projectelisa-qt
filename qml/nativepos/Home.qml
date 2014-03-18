@@ -3,21 +3,39 @@ import QtQuick.XmlListModel 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Controls.Styles 1.1
 
+import "ElisaComponents"
+
 Item{
     id: homepage
 
+    anchors.top: parent.top
+    anchors.topMargin: 5
+
+    anchors.bottom: parent.bottom
+    anchors.bottomMargin: 30
+
+    EBoxBackground{
+        target:parent
+    }
+
     Slider {
         id: slider
+
+        anchors.top: refreshButton.top
+        anchors.left: parent.left
+        anchors.leftMargin: 15
+        anchors.right: refreshButton.left
+        anchors.rightMargin: 15
+        anchors.bottom: refreshButton.bottom
+
         maximumValue: 0.0015
         minimumValue: 0.00001
         stepSize: 0.00001
-        anchors.left: parent.left
-        anchors.right: refreshButton.left
-        anchors.leftMargin: 10
-        anchors.rightMargin: 12
+
         updateValueWhileDragging: false
-        y: 10
+        
         z: 1
+
         onValueChanged: {
             messageModel.reload();
         }
@@ -29,20 +47,28 @@ Item{
         value: slider.value
     }
 
-    Image{
+    EButton{
         id: refreshButton
-        source: "images/Refresh-icon.png";
+
         anchors.top: parent.top
         anchors.right: parent.right
         anchors.rightMargin: 4
-        height: 71
-        width: 71
+        height: childrenRect.height + 20
+        width: childrenRect.width + 20
         z: 1
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                messageModel.reload();
-            }
+
+        onClicked: {
+            messageModel.reload();
+        }
+
+        Text{
+            color: "#5e5e5e"
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "refresh"
+
+            font.pixelSize: 25
+            z: 2
         }
     }
 
@@ -65,6 +91,7 @@ Item{
     }
 
     ListView{
+        id: messageView
         anchors.top: refreshButton.bottom
         anchors.topMargin: 5
         anchors.left: parent.left
@@ -109,20 +136,7 @@ Item{
         }
     }
 
-    Rectangle{
-        anchors.left: parent.left
-        anchors.leftMargin: 5
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 5
-        anchors.rightMargin: 5
-        anchors.right: parent.right
-
-        color: "#c8c8c8"
-
-        height:60
-    }
-
-    TextField {
+    ETextField {
         id: message_textedit
         anchors.left: parent.left
         anchors.leftMargin: 5
@@ -148,7 +162,7 @@ Item{
         }
     }
 
-    Button{
+    EButton{
         id: sendButton
         anchors.top: message_textedit.top
         anchors.bottom: parent.bottom
@@ -166,14 +180,7 @@ Item{
             text: "send"
             color: "#5e5e5e"
 
-        }
-
-        style: ButtonStyle {
-            background: Rectangle {
-                border.width: 0
-                radius: 5
-                color: control.pressed ? "#ccc" : "#eee"
-            }
+        
         }
 
         function sendMessage(body)
@@ -181,7 +188,7 @@ Item{
             var http = new XMLHttpRequest();
             var latitude = geosrc.latitude;
             var longitude = geosrc.longitude;
-            var url = "http://projectelisa.host56.com/main/post/?x="+latitude+"&y="+longitude+"&z=0&owner=000000"
+            var url = "http://projectelisa.altervista.org/main/post/?x="+latitude+"&y="+longitude+"&z=0&owner=000000"
             var params = "body="+body;
             http.open("POST", url, true);
 
