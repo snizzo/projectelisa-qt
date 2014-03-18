@@ -1,82 +1,114 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.1
+import QtQuick.Controls.Styles 1.1
 
-Column{
-    id: infopage
+//custom components imports
+import "ElisaComponents"
 
-    spacing: 20
+Item{
+    anchors.top: parent.top
+    anchors.topMargin: 10
 
-    Button{
-        anchors.left: parent.left
-        anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    anchors.bottomMargin: 30
 
-        text: "Login with facebook"
+    EBoxBackground{
+        target:infopage
+    }
 
-        onClicked: {
-            Qt.openUrlExternally("https://www.facebook.com/dialog/oauth?client_id="+fb.app_id+"&redirect_uri=http://projectelisa.host56.com/main/fb/");
+
+    Column{
+        id: infopage
+        anchors.fill: parent
+
+
+        spacing: 20
+
+        ETitle{
+            id: accountTitle
+
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.rightMargin: 30
+
+
+            text: "Account"
         }
-    }
+
+        Button{
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+
+            text: "Sign up"
 
 
-    Text{
-        id: accountInfo
+            style: ButtonStyle {
+                background: Rectangle {
+                    border.width: 0
+                    radius: 5
+                    color: control.pressed ? "#ccc" : "#eee"
+                }
+            }
 
-        anchors.left: parent.left
-        anchors.leftMargin: 15;
-
-        property string email;
-
-        font.pointSize: 20
-
-        text: "Logged in as " + email;
-    }
-
-
-    //Binding {
-    //    target: accountInfo
-    //    property: 'email'
-    //    value:
-    //}
-
-    Text{
-        id: gpsInfo
-
-        anchors.left: parent.left
-        anchors.leftMargin: 20;
-
-        font.pointSize: 18
-
-        property double latitude;
-        property double longitude;
-
-        text: "Latitude: " + latitude + "\nLongitude: " + longitude;
-        color: "white"
-
-
-        Rectangle{
-            anchors.fill: parent
-            color: "#000066";
-            radius: 5;
-            opacity: 1;
-            anchors.topMargin: -6
-            anchors.leftMargin: -6
-            anchors.rightMargin: -6
-            anchors.bottomMargin: -6
-            border.color: "black"
-            border.width: 2
-            z: -1;
+            onClicked: {
+                Qt.openUrlExternally("https://www.facebook.com/dialog/oauth?client_id="+fb.app_id+"&redirect_uri=http://projectelisa.altervista.org/main/fb/");
+            }
         }
+
+        ESeparator{}
+
+        ETitle{
+            id: gpsTitle
+
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.rightMargin: 30
+
+
+            text: "Positioning"
+        }
+
+        Row{
+            id: latitudeRow
+
+            property double latitude;
+
+            Text{
+                text: "Latitude:\t"
+            }
+            Text{
+                text: parent.latitude
+            }
+        }
+
+        Row{
+            id: longitudeRow
+
+            property double longitude;
+
+            Text{
+                text: "Longitude:\t"
+            }
+            Text{
+                text: parent.longitude
+            }
+        }
+
+        Binding {
+            target: latitudeRow
+            property: 'latitude'
+            value: geosrc.latitude
+        }
+
+        Binding {
+            target: longitudeRow
+            property: 'longitude'
+            value: geosrc.longitude
+        }
+
+        ESeparator{}
     }
 
-    Binding {
-        target: gpsInfo
-        property: 'latitude'
-        value: geosrc.latitude
-    }
-
-    Binding {
-        target: gpsInfo
-        property: 'longitude'
-        value: geosrc.longitude
-    }
 }
