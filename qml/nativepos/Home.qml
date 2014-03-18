@@ -140,6 +140,12 @@ Item{
                 implicitHeight: 60
             }
         }
+        onAccepted: {
+            if (message_textedit.text !== "") {
+                sendButton.sendMessage(message_textedit.text);
+                message_textedit.text = ""
+            }
+        }
     }
 
     Button{
@@ -197,11 +203,10 @@ Item{
         }
 
         onClicked: {
-            sendMessage(message_textedit.text);
-        }
-
-        Keys.onReturnPressed: {
-            sendMessage(message_textedit.text);
+            if (message_textedit.text !== "") {
+                sendMessage(message_textedit.text);
+                message_textedit.text = ""
+            }
         }
     }
 }
