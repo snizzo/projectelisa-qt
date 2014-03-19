@@ -12,7 +12,7 @@ Item{
     anchors.topMargin: 5
 
     anchors.bottom: parent.bottom
-    anchors.bottomMargin: 30
+    anchors.bottomMargin: 15
 
     EBoxBackground{
         target:parent
@@ -93,7 +93,7 @@ Item{
     ListView{
         id: messageView
         anchors.top: refreshButton.bottom
-        anchors.topMargin: 5
+        anchors.topMargin: 15
         anchors.left: parent.left
         anchors.leftMargin: 5
         anchors.right: parent.right
