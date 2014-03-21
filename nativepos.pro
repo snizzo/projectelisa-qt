@@ -22,6 +22,6 @@ ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 OTHER_FILES += \
     android/AndroidManifest.xml \
     qml/nativepos/images/Refresh-icon.png \
-    qml/nativepos/ElisaComponents/EButton.qml
+    qml/nativepos/ElisaComponents/EButton.qml \
 
 ANDROID_EXTRA_LIBS = 

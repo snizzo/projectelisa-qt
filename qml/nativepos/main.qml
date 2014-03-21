@@ -6,9 +6,6 @@ Rectangle {
     height: 762
     width: 480
 
-    //main bg color
-    color: "#c8c8c8"
-
     Facebook{
         id: fb
     }
@@ -41,7 +38,7 @@ Rectangle {
 
         height: 50
 
-        color: "#c8c8c8"
+        color: "#3399cc"
 
         z:4
         NavBar {
@@ -60,17 +57,13 @@ Rectangle {
         id: mainView
 
         anchors.left: parent.left
-        anchors.leftMargin: 20
         anchors.right: parent.right
-        anchors.rightMargin: 20
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
         anchors.top: tab_buttons_container.bottom
-        anchors.topMargin: 10
-
 
         Component.onCompleted: {
             mainView.push(Qt.createComponent("Home.qml"))
         }
     }
 }
+

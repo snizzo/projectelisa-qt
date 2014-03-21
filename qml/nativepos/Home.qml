@@ -12,7 +12,7 @@ Item{
     anchors.topMargin: 5
 
     anchors.bottom: parent.bottom
-    anchors.bottomMargin: 15
+    anchors.bottomMargin: 5
 
     EBoxBackground{
         target:parent
@@ -20,6 +20,16 @@ Item{
 
     Slider {
         id: slider
+
+        Rectangle {
+            id: rectSlider
+            y: slider.y-5
+            height: slider.height + 10
+            x: slider.x-30
+            width: slider.width + refreshButton.width + 40
+            color: "#f5f5f5"
+            z: -1
+        }
 
         anchors.top: refreshButton.top
         anchors.left: parent.left
@@ -29,12 +39,13 @@ Item{
         anchors.bottom: refreshButton.bottom
 
         maximumValue: 0.0015
-        minimumValue: 0.00001
+        minimumValue: 0.0015
+        //minimumValue: 0.00001
         stepSize: 0.00001
 
         updateValueWhileDragging: false
         
-        z: 1
+        z: 2
 
         onValueChanged: {
             messageModel.reload();
@@ -47,7 +58,7 @@ Item{
         value: slider.value
     }
 
-    EButton{
+    Button{
         id: refreshButton
 
         anchors.top: parent.top
@@ -55,7 +66,7 @@ Item{
         anchors.rightMargin: 4
         height: childrenRect.height + 20
         width: childrenRect.width + 20
-        z: 1
+        z: 2
 
         onClicked: {
             messageModel.reload();
@@ -65,7 +76,7 @@ Item{
             color: "#5e5e5e"
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "refresh"
+            text: "Refresh"
 
             font.pixelSize: 25
             z: 2
@@ -93,12 +104,13 @@ Item{
     ListView{
         id: messageView
         anchors.top: refreshButton.bottom
-        anchors.topMargin: 15
+        anchors.topMargin: 12
         anchors.left: parent.left
         anchors.leftMargin: 5
         anchors.right: parent.right
         anchors.rightMargin: 5
         anchors.bottom: message_textedit.top
+        anchors.bottomMargin: 16
 
         model: messageModel
 
@@ -141,7 +153,6 @@ Item{
         anchors.left: parent.left
         anchors.leftMargin: 5
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 5
         anchors.rightMargin: 5
         anchors.right: sendButton.left
 
@@ -160,13 +171,24 @@ Item{
                 message_textedit.text = ""
             }
         }
+        z: 2
     }
 
-    EButton{
+    Rectangle {
+        id: bottomRect
+
+        y: message_textedit.y - 5
+        height: message_textedit.height + 30
+        anchors.left: message_textedit.left + 30
+        width: message_textedit.width + sendButton.width + 15
+        color: "#f5f5f5"
+        z: 0
+    }
+
+    Button{
         id: sendButton
         anchors.top: message_textedit.top
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 5
         anchors.right: parent.right
         anchors.rightMargin: 5
 
@@ -177,7 +199,7 @@ Item{
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             font.pixelSize: 25
-            text: "send"
+            text: "Send"
             color: "#5e5e5e"
 
         

@@ -1,39 +1,15 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.1
+import QtQuick.Controls.Styles 1.1
 
 Column {
     id: singleMessage
-
     width: parent.width
-
     spacing: 8
 
     Text {
-        id:singleMessageBody
-        anchors.left: parent.left
-        anchors.leftMargin: 5
-        anchors.right: parent.right
-        anchors.rightMargin: 5
-        z:1
-        text: body
-
         Rectangle{
-            //dinamically growing background
-            y: (singleMessageBody.y -5)
-            height: (singleMessageOwner.height + singleMessageBody.height + 18)
-            x: (singleMessageBody.x -10)
-            width: (singleMessageOwner.width +10)
-            border.color: "black"
-            border.width: 2
-            radius: 5;
-            opacity: 1;
-            z: -1
-        }
-    }
-
-    Text {
-        Rectangle{
-            color: "#3399cc"
+            color: "#000000" //#3399cc"
             anchors.fill: parent
             anchors.leftMargin: -2
             anchors.rightMargin: -2
@@ -42,8 +18,18 @@ Column {
             radius: 5
             z: -1
         }
+        Rectangle{
+            y: (singleMessageOwner.y -5)
+            height: (singleMessageOwner.height + singleMessageBody.height + 78)
+            x: (singleMessageOwner.x -10)
+            width: (singleMessageBody.width +10)
+            border.color: "black"
+            border.width: 2
+            radius: 5;
+            z: -2
+        }
 
-        id:singleMessageOwner
+        id: singleMessageOwner
 
         anchors.left: parent.left
         anchors.leftMargin: 5
@@ -51,30 +37,103 @@ Column {
         anchors.rightMargin: 5
 
         height: 50
-        font.pointSize: 13
 
-        color: "#535353"
-        horizontalAlignment: Text.AlignLeft
-        verticalAlignment: Text.AlignBottom
+        color: "white" //"#535353"
+        verticalAlignment: Text.AlignVCenter
 
-        text: "written by "+owner
-        z:2
+        text: " written by " + owner
+        z:3
+
+        Text {
+            id: messageVote
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            verticalAlignment: Text.AlignVCenter
+            text: " +23 "
+            color: "black"
+            z:4
+
+            Rectangle{
+                color: "#00ff66"
+                anchors.fill: parent
+                radius: 5
+                z: -1
+            }
+        }
+    }
+
+    Text {
+        id: singleMessageBody
+        anchors.left: parent.left
+        anchors.leftMargin: 5
+        anchors.right: parent.right
+        anchors.rightMargin: 5
+        z:3
+        text: body
+
+        wrapMode: Text.WordWrap
+    }
+    Row {
+        id: row
+        anchors.right: parent.right
+        anchors.rightMargin: 8
+        anchors.topMargin: 10
+        spacing: 8
+
+        Button {
+            width: 100
+            height: 50
+            Text{
+                color: "#5e5e5e"
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: "Report"
+
+                font.pixelSize: 25
+                z: 2
+            }
+        }
 
         Button {
             id: up
-            anchors.right: down.left
-            anchors.rightMargin: 8
-            anchors.bottom: parent.bottom
-            width: 50
+            width: 60
             height: 50
+
+            style: ButtonStyle {
+                background: Rectangle {
+                    anchors.fill: parent
+                    color: "#00ff66"
+                    radius: 5
+                }
+            }
+
+            Image {
+                id: upImage
+                source: "images/up.png"
+                anchors.fill: parent
+            }
         }
 
         Button {
             id: down
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            width: 50
+            width: 60
             height: 50
+            style: ButtonStyle {
+                background: Rectangle {
+                    anchors.fill: parent
+                    color: "red"
+                    radius: 5
+                }
+            }
+
+            Image {
+                id: downImage
+                source: "images/down.png"
+                anchors.fill: parent
+            }
+
         }
+        z: 3
     }
 }
