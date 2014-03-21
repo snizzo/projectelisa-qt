@@ -13,6 +13,9 @@
 #include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
 #include <QtQml/QQmlEngine>
+#include <QQmlEngine>
+
+#include "elisaserver.h"
 
 class QtQuick2ApplicationViewerPrivate
 {
@@ -55,6 +58,7 @@ QtQuick2ApplicationViewer::QtQuick2ApplicationViewer(QWindow *parent)
 {
     connect(engine(), SIGNAL(quit()), SLOT(close()));
     setResizeMode(QQuickView::SizeRootObjectToView);
+    qmlRegisterType<ElisaServer>( "Elisa", 0,1, "Server" );
 }
 
 QtQuick2ApplicationViewer::~QtQuick2ApplicationViewer()

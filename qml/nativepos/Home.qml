@@ -153,6 +153,7 @@ Item{
         anchors.left: parent.left
         anchors.leftMargin: 5
         anchors.bottom: parent.bottom
+        anchors.bottomMargin: 5
         anchors.rightMargin: 5
         anchors.right: sendButton.left
 
@@ -189,6 +190,7 @@ Item{
         id: sendButton
         anchors.top: message_textedit.top
         anchors.bottom: parent.bottom
+        
         anchors.right: parent.right
         anchors.rightMargin: 5
 
@@ -210,25 +212,13 @@ Item{
             var http = new XMLHttpRequest();
             var latitude = geosrc.latitude;
             var longitude = geosrc.longitude;
-            var url = "http://projectelisa.altervista.org/main/post/?x="+latitude+"&y="+longitude+"&z=0&owner=000000"
-            var params = "body="+body;
-            http.open("POST", url, true);
 
-            // Send the proper header information along with the request
-            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            http.setRequestHeader("Content-length", params.length);
-            http.setRequestHeader("Connection", "close");
+            server.addMessage(body, latitude, longitude);
+        }
 
-            http.onreadystatechange = function() { // Call a function when the state changes.
-                        if (http.readyState == 4) {
-                            if (http.status == 200) {
-                                console.log("ok")
-                            } else {
-                                console.log("error: " + http.status)
-                            }
-                        }
-                    }
-            http.send(params);
+        function sendMessageReplied(reply)
+        {
+            console.log("server definitely says: "+reply);
         }
 
         onClicked: {
@@ -236,6 +226,10 @@ Item{
                 sendMessage(message_textedit.text);
                 message_textedit.text = ""
             }
+        }
+
+        Component.onCompleted: {
+            server.onAddMessageReply.connect(sendMessageReplied);
         }
     }
 }

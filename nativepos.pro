@@ -8,7 +8,8 @@ DEPLOYMENTFOLDERS = folder_01
 QML_IMPORT_PATH =
 
 # The .cpp file which was generated for your project. Feel free to hack it.
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    elisaserver.cpp
 
 # Installation path
 # target.path =
@@ -25,3 +26,6 @@ OTHER_FILES += \
     qml/nativepos/ElisaComponents/EButton.qml \
 
 ANDROID_EXTRA_LIBS = 
+
+HEADERS += \
+    elisaserver.h

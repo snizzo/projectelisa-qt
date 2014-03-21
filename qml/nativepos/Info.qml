@@ -35,19 +35,24 @@ Item{
             text: "Account"
         }
 
-        EButton{
+        StackView{
+            id: logView
+
             anchors.left: parent.left
-            anchors.leftMargin: 10
+            anchors.leftMargin: 20
             anchors.right: parent.right
-            anchors.rightMargin: 10
+            anchors.rightMargin: 20
 
-            text: "Sign up"
+            height: childrenRect.height
 
-            height: 50
-
-            onClicked: {
-                Qt.openUrlExternally("https://www.facebook.com/dialog/oauth?client_id="+fb.app_id+"&redirect_uri=http://projectelisa.altervista.org/main/fb/");
+            Component.onCompleted: {
+                if(user.logged === false){
+                    logView.push(Qt.createComponent("UserManagement/NotLogged.qml"));
+                } else {
+                    logView.push(Qt.createComponent("UserManagement/Logged.qml"));
+                }
             }
+
         }
 
         ESeparator{}
@@ -66,6 +71,9 @@ Item{
         Row{
             id: latitudeRow
 
+            anchors.left: parent.left
+            anchors.leftMargin: 20
+
             property double latitude;
 
             Text{
@@ -78,6 +86,9 @@ Item{
 
         Row{
             id: longitudeRow
+
+            anchors.left: parent.left
+            anchors.leftMargin: 20
 
             property double longitude;
 

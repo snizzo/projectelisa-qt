@@ -2,12 +2,23 @@ import QtQuick 2.0
 import QtPositioning 5.2
 import QtQuick.Controls 1.1
 
+import "ElisaComponents"
+import Elisa 0.1 as Elisa
+
 Rectangle {
     height: 762
     width: 480
 
     Facebook{
         id: fb
+    }
+
+    EUser{
+        id: user
+    }
+
+    Elisa.Server{
+        id: server
     }
 
     PositionSource {
