@@ -47,9 +47,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.top: parent.top
 
-        height: 50
-
-        color: "#3399cc"
+        height: 60
 
         z:4
         NavBar {
@@ -58,8 +56,8 @@ Rectangle {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
+            anchors.bottom: parent.bottom
 
-            height: 50
             z:5
         }
     }
@@ -71,6 +69,8 @@ Rectangle {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         anchors.top: tab_buttons_container.bottom
+
+        property string current_button: "home"
 
         Component.onCompleted: {
             mainView.push(Qt.createComponent("Home.qml"))

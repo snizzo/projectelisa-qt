@@ -39,12 +39,11 @@ Item{
         anchors.bottom: refreshButton.bottom
 
         maximumValue: 0.0015
-        minimumValue: 0.0015
-        //minimumValue: 0.00001
+        //minimumValue: 0.0015
+        minimumValue: 0.00001
         stepSize: 0.00001
 
         updateValueWhileDragging: false
-        
         z: 2
 
         onValueChanged: {
@@ -180,7 +179,7 @@ Item{
 
         y: message_textedit.y - 5
         height: message_textedit.height + 30
-        anchors.left: message_textedit.left + 30
+        //anchors.left: message_textedit.left + 30
         width: message_textedit.width + sendButton.width + 15
         color: "#f5f5f5"
         z: 0
@@ -203,8 +202,6 @@ Item{
             font.pixelSize: 25
             text: "Send"
             color: "#5e5e5e"
-
-        
         }
 
         function sendMessage(body)

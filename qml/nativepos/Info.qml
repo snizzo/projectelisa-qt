@@ -6,6 +6,7 @@ import QtQuick.Controls.Styles 1.1
 import "ElisaComponents"
 
 Item{
+    id: info
     anchors.top: parent.top
     anchors.topMargin: 10
 
@@ -20,7 +21,6 @@ Item{
     Column{
         id: infopage
         anchors.fill: parent
-
 
         spacing: 20
 
@@ -114,5 +114,4 @@ Item{
 
         ESeparator{}
     }
-
 }
