@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Controls.Styles 1.1
+import QtGraphicalEffects 1.0
 
 Column {
     id: singleMessage
@@ -21,13 +22,20 @@ Column {
         verticalAlignment: Text.AlignVCenter
         font {italic: true;}
 
-        text: " written by " + owner
+        text: " " + owner
         z:3
+
+        Rectangle {
+            anchors.fill: parent
+            color: "#ccc"
+            radius: 5
+            z: -1
+        }
 
         Rectangle{
             id: rectBorder
             y: (singleMessageOwner.y -5)
-            height: (singleMessageOwner.height + singleMessageBody.height + 94)
+            height: (singleMessageOwner.height + singleMessageBody.height + 84)
             x: (singleMessageOwner.x -10)
             width: (singleMessageBody.width +10)
             border.color: "black"
@@ -59,14 +67,6 @@ Column {
         anchors.left: parent.left
         anchors.right: parent.right
         height: 2
-        color: "black"
-        z: 5
-    }
-
-    Rectangle{
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: 2
     }
 
     Text {
@@ -78,6 +78,7 @@ Column {
         z:3
         text: body
 
+        font.pointSize: 15
         wrapMode: Text.WordWrap
     }
 
@@ -85,14 +86,6 @@ Column {
         anchors.left: parent.left
         anchors.right: parent.right
         height: 2
-    }
-
-    Rectangle{
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: 2
-        color: "black"
-        z: 5
     }
 
     Row {
@@ -125,14 +118,6 @@ Column {
             width: 60
             height: 50
 
-            style: ButtonStyle {
-                background: Rectangle {
-                    anchors.fill: parent
-                    color: "#00ff66"
-                    radius: 5
-                }
-            }
-
             Image {
                 id: upImage
                 source: "images/up.png"
@@ -144,13 +129,6 @@ Column {
             id: down
             width: 60
             height: 50
-            style: ButtonStyle {
-                background: Rectangle {
-                    anchors.fill: parent
-                    color: "red"
-                    radius: 5
-                }
-            }
 
             Image {
                 id: downImage
