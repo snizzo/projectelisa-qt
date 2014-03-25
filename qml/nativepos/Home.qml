@@ -39,8 +39,8 @@ Item{
         anchors.bottom: refreshButton.bottom
 
         maximumValue: 0.0015
-        //minimumValue: 0.0015
-        minimumValue: 0.00001
+        minimumValue: 0.0015
+        //minimumValue: 0.00001
         stepSize: 0.00001
 
         updateValueWhileDragging: false
@@ -62,7 +62,7 @@ Item{
 
         anchors.top: parent.top
         anchors.right: parent.right
-        anchors.rightMargin: 4
+        anchors.rightMargin: 5
         height: childrenRect.height + 20
         width: childrenRect.width + 20
         z: 2
@@ -179,7 +179,6 @@ Item{
 
         y: message_textedit.y - 5
         height: message_textedit.height + 30
-        //anchors.left: message_textedit.left + 30
         width: message_textedit.width + sendButton.width + 15
         color: "#f5f5f5"
         z: 0
@@ -188,12 +187,12 @@ Item{
     Button{
         id: sendButton
         anchors.top: message_textedit.top
-        anchors.bottom: parent.bottom
         
         anchors.right: parent.right
         anchors.rightMargin: 5
 
         width: childrenRect.width + 10
+        height: message_textedit.height
 
         Text {
             id:sendButtonValue

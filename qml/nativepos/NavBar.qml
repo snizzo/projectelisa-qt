@@ -19,7 +19,7 @@ Item {
 
         onClicked: {
             if (mainView.current_button == "info") {
-                mainView.push(Qt.createComponent("Home.qml"), {replace:true})
+                mainView.pop(Qt.createComponent("Home.qml"), {replace:true})
                 mainView.current_button = "home";
             }
         }
@@ -56,7 +56,6 @@ Item {
                     PropertyChanges {
                         target: messages_rectangle
                         color: "black"
-                        //color: control.pressed ? "#555" : "#000"
                     }
                     PropertyChanges {
                         target: messages_text
@@ -101,7 +100,6 @@ Item {
                     PropertyChanges {
                         target: info_rectangle
                         color: "black"
-                        //color: control.pressed ? "#555" : "#000"
                     }
                     PropertyChanges {
                         target: info_text

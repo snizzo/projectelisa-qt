@@ -5,30 +5,9 @@ import QtQuick.Controls.Styles 1.1
 Column {
     id: singleMessage
     width: parent.width
-    spacing: 8
+    spacing: 4
 
     Text {
-        Rectangle{
-            color: "#000000" //#3399cc"
-            anchors.fill: parent
-            anchors.leftMargin: -2
-            anchors.rightMargin: -2
-            anchors.bottomMargin: -2
-            anchors.topMargin: -2
-            radius: 5
-            z: -1
-        }
-        Rectangle{
-            y: (singleMessageOwner.y -5)
-            height: (singleMessageOwner.height + singleMessageBody.height + 78)
-            x: (singleMessageOwner.x -10)
-            width: (singleMessageBody.width +10)
-            border.color: "black"
-            border.width: 2
-            radius: 5;
-            z: -2
-        }
-
         id: singleMessageOwner
 
         anchors.left: parent.left
@@ -38,11 +17,24 @@ Column {
 
         height: 50
 
-        color: "white" //"#535353"
+        color: "black"
         verticalAlignment: Text.AlignVCenter
+        font {italic: true;}
 
         text: " written by " + owner
         z:3
+
+        Rectangle{
+            id: rectBorder
+            y: (singleMessageOwner.y -5)
+            height: (singleMessageOwner.height + singleMessageBody.height + 94)
+            x: (singleMessageOwner.x -10)
+            width: (singleMessageBody.width +10)
+            border.color: "black"
+            border.width: 2
+            radius: 5;
+            z: -2
+        }
 
         Text {
             id: messageVote
@@ -63,6 +55,20 @@ Column {
         }
     }
 
+    Rectangle{
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: 2
+        color: "black"
+        z: 5
+    }
+
+    Rectangle{
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: 2
+    }
+
     Text {
         id: singleMessageBody
         anchors.left: parent.left
@@ -74,11 +80,25 @@ Column {
 
         wrapMode: Text.WordWrap
     }
+
+    Rectangle{
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: 2
+    }
+
+    Rectangle{
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: 2
+        color: "black"
+        z: 5
+    }
+
     Row {
         id: row
         anchors.right: parent.right
         anchors.rightMargin: 8
-        anchors.topMargin: 10
         spacing: 8
 
         Button {
