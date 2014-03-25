@@ -21,6 +21,7 @@ Column{
         anchors.left: parent.left
         anchors.right: parent.right
         placeholderText: "password"
+        echoMode: TextInput.Password
     }
 
     ETextField{
@@ -28,34 +29,63 @@ Column{
         anchors.left: parent.left
         anchors.right: parent.right
         placeholderText: "repeat password"
+        echoMode: TextInput.Password
     }
 
-    EButton{
+    Row{
+        anchors.left: parent.left
         anchors.right: parent.right
 
-        inner_text: "next"
-
         height: 50
-        width: 150
+        /*
+        EButton{
+            anchors.left: parent.left
 
-        onClicked: {
-            var n1 = nickname.text;
-            var p1 = password.text;
-            var p2 = passwordRepeat.text;
-            var m1 = facebookMail.text;
-            var m2 = facebookMailRepeat.text;
+            inner_text: "back"
 
-            if(p1 != p2){
-                console.out("passwords don't match");
+            height: 50
+            width: 150
+
+            onClicked: {
+                logView.pop();
+            }
+        }
+        */
+
+        EButton{
+            anchors.right: parent.right
+
+            inner_text: "next"
+
+            height: 50
+            width: 150
+
+            onClicked: {
+                var n1 = nickname.text;
+                var p1 = password.text;
+                var p2 = passwordRepeat.text;
+                var m1 = facebookMail.text;
+
+                if(p1 != p2){
+                    console.log("passwords don't match");
+                }
+
+                server.registerUser(n1,p1,m1);
             }
 
-            if(m1 != m2){
-                console.out("mails don't match");
+            Component.onCompleted: {
+                server.onRegisterUserReply.connect(registerUserReplied);
             }
 
-            Qt.openUrlExternally("http://projectelisa.altervista.org/main/register/?nick="+n1+"&pass="+p1+"&mail="+m1);
-
-            logView.push(Qt.createComponent("Register2.qml"));
+            function registerUserReplied(reply) {
+                if(reply==="ok"){
+                    logView.push(Qt.createComponent("Register2.qml"));
+                } else if (reply==="mailexists") {
+                    notification.show("Mail already registered!");
+                } else if (reply==="nicknameexists") {
+                    notification.show("Nickname already registered!");
+                }
+            }
         }
     }
 

@@ -24,6 +24,7 @@ OTHER_FILES += \
     android/AndroidManifest.xml \
     qml/nativepos/images/Refresh-icon.png \
     qml/nativepos/ElisaComponents/EButton.qml \
+    qml/nativepos/UserManagement/Register.qml
 
 ANDROID_EXTRA_LIBS = 
 

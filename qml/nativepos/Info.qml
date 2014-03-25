@@ -46,8 +46,8 @@ Item{
             height: childrenRect.height
 
             Component.onCompleted: {
-                if(user.logged === false){
-                    logView.push(Qt.createComponent("UserManagement/NotLogged.qml"));
+                if(server.nickname===""){
+                    logView.push(Qt.createComponent("UserManagement/UserMain.qml"));
                 } else {
                     logView.push(Qt.createComponent("UserManagement/Logged.qml"));
                 }

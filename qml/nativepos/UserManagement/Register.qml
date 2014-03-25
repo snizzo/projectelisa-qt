@@ -13,7 +13,7 @@ Column{
         id: facebookMail
         anchors.left: parent.left
         anchors.right: parent.right
-        placeholderText: "facebook e-mail"
+        placeholderText: "e-mail (facebook preferred)"
     }
 
     ETextField{

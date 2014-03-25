@@ -13,10 +13,6 @@ Rectangle {
         id: fb
     }
 
-    EUser{
-        id: user
-    }
-
     Elisa.Server{
         id: server
     }
@@ -38,6 +34,67 @@ Rectangle {
 
             latitude = geosrc.position.coordinate.latitude;
             longitude = geosrc.position.coordinate.longitude;
+        }
+    }
+
+    Item{
+        id: notification
+
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+
+        z:5
+        Rectangle{
+
+            anchors.fill: parent
+
+            color: "#000000"
+
+            opacity: 0.7
+
+            z:1
+        }
+
+        EBoxBackground{
+            target: notificationText
+            opacity: 1
+            z:2
+        }
+
+        Text{
+            id:notificationText
+
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            wrapMode: Text.WordWrap
+
+            opacity: 1
+
+            width: parent.width -100
+
+            font.pointSize: 13
+
+            text: ""
+            z:3
+        }
+
+        function show(s){
+            notificationText.text = s + "<br><br>(tap to hide)";
+            notification.visible = true;
+        }
+
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                notification.visible = false;
+            }
+        }
+
+        Component.onCompleted: {
+            show("<b>Welcome to WriteItApp alpha!</b><br>You're encouraged to report bugs and post messages.");
         }
     }
 

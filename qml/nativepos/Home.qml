@@ -44,6 +44,7 @@ Item{
         stepSize: 0.00001
 
         updateValueWhileDragging: false
+        
         z: 2
 
         onValueChanged: {
@@ -194,6 +195,17 @@ Item{
         width: childrenRect.width + 10
         height: message_textedit.height
 
+        states:[
+            State {
+                name: "normal"
+                PropertyChanges { target: sendButtonValue; state: "normal" }
+            },
+            State {
+                name: "acting"
+                PropertyChanges { target: sendButtonValue; state: "acting" }
+            }
+        ]
+
         Text {
             id:sendButtonValue
             anchors.verticalCenter: parent.verticalCenter
@@ -201,10 +213,28 @@ Item{
             font.pixelSize: 25
             text: "Send"
             color: "#5e5e5e"
+
+            states:[
+                State {
+                    name: "normal"
+                    PropertyChanges { target: sendButtonValue; text: "Send" }
+                    PropertyChanges { target: sendButtonValue; color: "#5e5e5e" }
+                    PropertyChanges { target: sendButtonValue; enabled: true }
+                },
+                State {
+                    name: "acting"
+                    PropertyChanges { target: sendButtonValue; text: "Sending..." }
+                    PropertyChanges { target: sendButtonValue; color: "#b1b1b1" }
+                    PropertyChanges { target: sendButtonValue; enabled: false }
+                }
+            ]
         }
 
         function sendMessage(body)
-        {
+        {   
+            //setting button acting
+            sendButton.state = "acting"
+
             var http = new XMLHttpRequest();
             var latitude = geosrc.latitude;
             var longitude = geosrc.longitude;
@@ -214,13 +244,21 @@ Item{
 
         function sendMessageReplied(reply)
         {
-            console.log("server definitely says: "+reply);
+            sendButton.state = "normal";
+
+            if(reply==="ok"){
+                notification.show("Message inserted!");
+                message_textedit.text = "";
+            } else if (reply==="denied") {
+                notification.show("You need to be logged in to post!");
+            } else {
+                notification.show("Unknown error!");
+            }
         }
 
         onClicked: {
             if (message_textedit.text !== "") {
                 sendMessage(message_textedit.text);
-                message_textedit.text = ""
             }
         }
 

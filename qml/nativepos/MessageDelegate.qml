@@ -113,6 +113,11 @@ Column {
                 font.pixelSize: 25
                 z: 2
             }
+
+            onClicked: {
+                server.report(id);
+                notification.show("A report has been submitted to our servers. We'll evaluate it as soon as possible.");
+            }
         }
 
         Button {

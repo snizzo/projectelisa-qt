@@ -5,6 +5,8 @@ import QtQuick.Controls.Styles 1.1
 
 TextField {
     
+    inputMethodHints: Qt.ImhNoPredictiveText
+
     style: TextFieldStyle {
         textColor: "black"
         background: Rectangle {
