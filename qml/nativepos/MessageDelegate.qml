@@ -47,19 +47,49 @@ Column {
         Text {
             id: messageVote
             anchors.right: parent.right
+            anchors.rightMargin: 20
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             verticalAlignment: Text.AlignVCenter
-            text: " +23 "
             color: "black"
             z:4
 
+            Component.onCompleted: {
+                if(votesdown!==0){
+                    var rate = ((votesup/votesdown)-1)*255;
+
+                    if(rate>255){
+                        rate = 255;
+                    }
+
+                    var rate_abs = Math.abs(rate);
+                    var difference = (votesup-votesdown);
+
+                    var hex = Math.ceil(rate_abs).toString(16);
+
+                    console.log(hex);
+
+                    if(difference>=0){
+                        text = "+"+difference.toString();
+                        color = "#00"+hex+"00";
+                    } else {
+                        text = difference.toString();
+                        color = "#"+hex+"0000";
+                    }
+
+                } else {
+                    text = "0";
+                }
+            }
+
+            /*
             Rectangle{
                 color: "#00ff66"
                 anchors.fill: parent
                 radius: 5
                 z: -1
             }
+            */
         }
     }
 
@@ -123,6 +153,11 @@ Column {
                 source: "images/up.png"
                 anchors.fill: parent
             }
+
+            onClicked: {
+                server.voteUp(id);
+                notification.show("Your vote has been registered!");
+            }
         }
 
         Button {
@@ -135,7 +170,10 @@ Column {
                 source: "images/down.png"
                 anchors.fill: parent
             }
-
+            onClicked: {
+                server.voteDown(id);
+                notification.show("Your vote has been registered!");
+            }
         }
         z: 3
     }

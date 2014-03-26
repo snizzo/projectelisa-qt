@@ -19,7 +19,7 @@ Rectangle {
 
     PositionSource {
         id: geosrc
-        updateInterval: 1000
+        updateInterval: 5000
         active: true
 
         property string fetchUrl;

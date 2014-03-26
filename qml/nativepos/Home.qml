@@ -38,9 +38,9 @@ Item{
         anchors.rightMargin: 15
         anchors.bottom: refreshButton.bottom
 
-        maximumValue: 0.0015
-        minimumValue: 0.0015
-        //minimumValue: 0.00001
+        maximumValue: 0.0010
+        //minimumValue: 0.0015
+        minimumValue: 0.00001
         stepSize: 0.00001
 
         updateValueWhileDragging: false
@@ -92,6 +92,8 @@ Item{
         XmlRole { name: "y"; query: "y/string()" }
         XmlRole { name: "z"; query: "z/string()" }
         XmlRole { name: "body"; query: "body/string()" }
+        XmlRole { name: "votesup"; query: "up/number()" }
+        XmlRole { name: "votesdown"; query: "down/number()" }
         XmlRole { name: "owner"; query: "owner/string()" }
     }
 

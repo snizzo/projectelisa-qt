@@ -20,6 +20,58 @@ ElisaServer::ElisaServer(QQuickItem *parent) :
     login(temp_nickname, temp_password);
 }
 
+void ElisaServer::voteUp(QString id)
+{
+    //check if user is already logged
+    if(m_nickname!=""){
+        QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+
+        //set urls
+        QUrl url;
+        url.setUrl("http://projectelisa.altervista.org/main/voteup/?id="+id+"&nick="+temp_nickname+"&pass="+temp_password);
+
+        //bind network request
+        QNetworkRequest request;
+        request.setUrl(url);
+
+        //define callback
+        QNetworkReply * r;
+        r = manager->get(request);
+        connect(r,SIGNAL(finished()),this,SLOT(voteUpFinished()));
+    }
+}
+
+void ElisaServer::voteUpFinished()
+{
+
+}
+
+void ElisaServer::voteDown(QString id)
+{
+    //check if user is already logged
+    if(m_nickname!=""){
+        QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+
+        //set urls
+        QUrl url;
+        url.setUrl("http://projectelisa.altervista.org/main/votedown/?id="+id+"&nick="+temp_nickname+"&pass="+temp_password);
+
+        //bind network request
+        QNetworkRequest request;
+        request.setUrl(url);
+
+        //define callback
+        QNetworkReply * r;
+        r = manager->get(request);
+        connect(r,SIGNAL(finished()),this,SLOT(voteDownFinished()));
+    }
+}
+
+void ElisaServer::voteDownFinished()
+{
+
+}
+
 /*
  * Add message request set
  */

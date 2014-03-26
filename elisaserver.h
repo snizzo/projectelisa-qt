@@ -24,6 +24,12 @@ signals:
 
 public slots:
     //network
+    Q_INVOKABLE void voteUp(QString id);
+    void voteUpFinished();
+
+    Q_INVOKABLE void voteDown(QString id);
+    void voteDownFinished();
+
     Q_INVOKABLE void addMessage(QString body, double latitude, double longitude);
     void addMessageFinished();
 
