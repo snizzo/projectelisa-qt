@@ -5,18 +5,46 @@ import QtQuick.Controls 1.1
 import "ElisaComponents"
 import Elisa 0.1 as Elisa
 
+import "Tutorial"
+import "Notifications"
+
 Rectangle {
     height: 762
     width: 480
 
+    //facebook handler
+    //actually contains just appid
     Facebook{
         id: fb
     }
 
+    //handles communication between server and client
+    //plus configs
     Elisa.Server{
         id: server
     }
 
+    Elisa.Options{
+        id: options
+    }
+
+    //used for first time tutorial
+    Tutorial{
+        id: tutorial
+        z:10
+
+        Component.onCompleted: {
+            if(options.firstrun){
+                //showing tutorial
+                start();
+                //setting firstrun has already been executed
+                //TODO: change this to false!!
+                options.firstrun = false;
+            }
+        }
+    }
+
+    //provides gps updates
     PositionSource {
         id: geosrc
         updateInterval: 5000
@@ -37,61 +65,9 @@ Rectangle {
         }
     }
 
-    Item{
+
+    Notification{
         id: notification
-
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-
-        z:5
-        Rectangle{
-
-            anchors.fill: parent
-
-            color: "#000000"
-
-            opacity: 0.7
-
-            z:1
-        }
-
-        EBoxBackground{
-            target: notificationText
-            opacity: 1
-            z:2
-        }
-
-        Text{
-            id:notificationText
-
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            wrapMode: Text.WordWrap
-
-            opacity: 1
-
-            width: parent.width -100
-
-            font.pointSize: 13
-
-            text: ""
-            z:3
-        }
-
-        function show(s){
-            notificationText.text = s + "<br><br>(tap to hide)";
-            notification.visible = true;
-        }
-
-        MouseArea{
-            anchors.fill: parent
-            onClicked: {
-                notification.visible = false;
-            }
-        }
 
         Component.onCompleted: {
             show("<b>Welcome to WriteItApp alpha!</b><br>You're encouraged to report bugs and post messages.");

@@ -7,29 +7,77 @@ Column{
     anchors.left: parent.left
     anchors.right: parent.right
 
-    spacing: 20
+    spacing: 10
 
-    ETextField{
+
+    Text{
+        anchors.left: parent.left
+        anchors.right: parent.right
+        text: "Nickname:"
+    }
+
+    TextInput{
         id: nickname
         anchors.left: parent.left
         anchors.right: parent.right
-        placeholderText: "nickname"
+        Rectangle {
+            anchors.fill: parent
+            anchors.topMargin: -10
+            anchors.bottomMargin: -10
+            anchors.leftMargin: -5
+            anchors.rightMargin: -5
+            color: "#dddddd"
+            radius: 5
+            implicitHeight: 60
+            z: -1
+        }
     }
 
-    ETextField{
+
+    Text{
+        anchors.left: parent.left
+        anchors.right: parent.right
+        text: "Password:"
+    }
+    TextInput{
         id: password
         anchors.left: parent.left
         anchors.right: parent.right
-        placeholderText: "password"
         echoMode: TextInput.Password
+        Rectangle {
+            anchors.fill: parent
+            anchors.topMargin: -10
+            anchors.bottomMargin: -10
+            anchors.leftMargin: -5
+            anchors.rightMargin: -5
+            color: "#dddddd"
+            radius: 5
+            implicitHeight: 60
+            z: -1
+        }
     }
 
-    ETextField{
+    Text{
+        anchors.left: parent.left
+        anchors.right: parent.right
+        text: "Repeat password:"
+    }
+    TextInput{
         id: passwordRepeat
         anchors.left: parent.left
         anchors.right: parent.right
-        placeholderText: "repeat password"
         echoMode: TextInput.Password
+        Rectangle {
+            anchors.fill: parent
+            anchors.topMargin: -10
+            anchors.bottomMargin: -10
+            anchors.leftMargin: -5
+            anchors.rightMargin: -5
+            color: "#dddddd"
+            radius: 5
+            implicitHeight: 60
+            z: -1
+        }
     }
 
     Row{

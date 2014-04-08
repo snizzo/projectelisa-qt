@@ -27,13 +27,16 @@ Column{
         anchors.right: parent.right
         anchors.rightMargin: 10
 
-        text: "Verify user with facebook"
+        inner_text: "Verify with facebook"
 
         height: 50
 
         onClicked: {
+            notification.show("Unfortunately facebook integration is temporarily disabled. <br> Please use email verification!");
+            /*
             console.log(nickname.text);
             Qt.openUrlExternally("https://www.facebook.com/dialog/oauth?client_id="+fb.app_id+"&redirect_uri=http://projectelisa.altervista.org/main/fb/");
+            */
         }
     }
 
@@ -43,7 +46,7 @@ Column{
         anchors.right: parent.right
         anchors.rightMargin: 10
 
-        text: "Verify user with email"
+        inner_text: "Verify with email"
 
         height: 50
 

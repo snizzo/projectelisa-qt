@@ -9,7 +9,8 @@ QML_IMPORT_PATH =
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    elisaserver.cpp
+    elisaserver.cpp \
+    elisaoptions.cpp
 
 # Installation path
 # target.path =
@@ -29,4 +30,5 @@ OTHER_FILES += \
 ANDROID_EXTRA_LIBS = 
 
 HEADERS += \
-    elisaserver.h
+    elisaserver.h \
+    elisaoptions.h

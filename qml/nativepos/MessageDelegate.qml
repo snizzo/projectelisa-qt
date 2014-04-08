@@ -55,8 +55,13 @@ Column {
             z:4
 
             Component.onCompleted: {
-                if(votesdown!==0){
-                    var rate = ((votesup/votesdown)-1)*255;
+                var vdown = votesdown;
+                if(vdown===0){
+                    vdown = 0.00001;
+                }
+
+                if(vdown!==0){
+                    var rate = ((votesup/vdown)-1)*255;
 
                     if(rate>255){
                         rate = 255;

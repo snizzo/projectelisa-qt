@@ -26,7 +26,7 @@ Column{
         anchors.right: parent.right
         anchors.rightMargin: 10
 
-        text: "I already have an account"
+        inner_text: "Log in"
 
         height: 50
 
@@ -41,7 +41,7 @@ Column{
         anchors.right: parent.right
         anchors.rightMargin: 10
 
-        text: "Register an account"
+        inner_text: "Register an account"
 
         height: 50
 

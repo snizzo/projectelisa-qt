@@ -48,7 +48,9 @@ Item{
         z: 2
 
         onValueChanged: {
-            messageModel.reload();
+            if(messageModel){
+                messageModel.reload();
+            }
         }
     }
 
@@ -64,8 +66,8 @@ Item{
         anchors.top: parent.top
         anchors.right: parent.right
         anchors.rightMargin: 5
-        height: childrenRect.height + 20
-        width: childrenRect.width + 20
+        //height: childrenRect.height + 20
+        //width: childrenRect.width + 20
         z: 2
 
         onClicked: {
@@ -80,6 +82,11 @@ Item{
 
             font.pixelSize: 25
             z: 2
+        }
+
+        Component.onCompleted: {
+            height = childrenRect.height + 20;
+            width = childrenRect.width + 20;
         }
     }
 
@@ -150,7 +157,7 @@ Item{
         }
     }
 
-    ETextField {
+    TextInput {
         id: message_textedit
         anchors.left: parent.left
         anchors.leftMargin: 5
@@ -160,14 +167,19 @@ Item{
         anchors.right: sendButton.left
 
 
-        style: TextFieldStyle {
-            textColor: "black"
-            background: Rectangle {
-                color: "#dddddd"
-                radius: 5
-                implicitHeight: 60
-            }
+        Rectangle {
+            anchors.fill: parent
+            anchors.topMargin: -10
+            anchors.bottomMargin: -10
+            anchors.leftMargin: -5
+            anchors.rightMargin: -5
+            color: "#dddddd"
+            radius: 5
+            implicitHeight: 60
+
+            z:-1
         }
+
         onAccepted: {
             if (message_textedit.text !== "") {
                 sendButton.sendMessage(message_textedit.text);
@@ -190,12 +202,12 @@ Item{
     Button{
         id: sendButton
         anchors.top: message_textedit.top
+        anchors.topMargin: -10
         
         anchors.right: parent.right
         anchors.rightMargin: 5
 
-        width: childrenRect.width + 10
-        height: message_textedit.height
+        height: message_textedit.height +20
 
         states:[
             State {
@@ -266,6 +278,7 @@ Item{
 
         Component.onCompleted: {
             server.onAddMessageReply.connect(sendMessageReplied);
+            width = childrenRect.width + 10;
         }
     }
 }
